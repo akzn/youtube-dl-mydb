@@ -1,0 +1,6 @@
+{
+    "host":"localhost",
+    "user":"root",
+    "password":"",
+    "database":"youtube_dl_mydb"
+}
