@@ -12,7 +12,7 @@ for now only basic function is available
 ### Requirement
 1. youtube-dl python module
 2. mariadb python module
-3. mysql-server
+3. mariadb-server
 
 ### Usage
 1. restore scheme.sql to mysql server

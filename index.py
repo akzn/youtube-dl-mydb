@@ -2,13 +2,19 @@ from __future__ import unicode_literals
 from ytmanager import YtManager
 from dbmanager import DbManager
 import time
-
+import json
+from pathlib import Path
 class YtPlaylistMan():    
 
-    def __init__(self,url_list):
+    def __init__(self):
+        # load config
+        path = Path(__file__).parent.absolute()
+        configpath = '{}/config.json'.format(path)
+        with open(configpath) as file:
+            config = json.load(file)
+        
         #param
-        self.base_url = "https://www.youtube.com"
-        self.playlist_url = url_list
+        self.playlist_url = config['playlist-url']
         self.current_download_url_id = ""
         self.current_download_url = ""
         # self.dbmanager = DbManager()
@@ -38,5 +44,6 @@ class YtPlaylistMan():
             print('no download queue')
             
 
-YtPlaylistMan = YtPlaylistMan("https://www.youtube.com/playlist?list=PL75MU-kJCnQx82DQiTQRDKuZoajexibEs")
+
+YtPlaylistMan = YtPlaylistMan()
 YtPlaylistMan.run()
