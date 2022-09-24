@@ -4,12 +4,18 @@ import mariadb
 import youtube_dl
 import json
 import time
+from pathlib import Path
 from custompp import CustomPP
 class YtManager:
     def __init__(self,current_download_url):
+        #load config
+        path = Path(__file__).parent.absolute()
+        configpath = '{}/config.json'.format(path)
+        with open(configpath) as file:
+            config = json.load(file)
+        self.savepath =  config['savepath']
+
         #param
-        self.base_url = "https://www.youtube.com"
-        # self.playlist_url = playlist_url
         self.current_download_url_id = ""
         self.current_download_url = current_download_url
 
@@ -54,7 +60,7 @@ class YtManager:
 
 
         ydl_opts = {
-            'outtmpl': '%(title)s.%(ext)s',
+            'outtmpl': self.savepath+'%(title)s.%(ext)s',
             'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',

@@ -38,6 +38,5 @@ class YtPlaylistMan():
             print('no download queue')
             
 
-YtPlaylistMan = YtPlaylistMan('https://www.youtube.com/playlist?list=PL75MU-kJCnQzlIRV6sgbikcWsjrzPpfMh')
-# YtPlaylistMan = YtPlaylistMan("https://www.youtube.com/playlist?list=PL75MU-kJCnQx82DQiTQRDKuZoajexibEs")
+YtPlaylistMan = YtPlaylistMan("https://www.youtube.com/playlist?list=PL75MU-kJCnQx82DQiTQRDKuZoajexibEs")
 YtPlaylistMan.run()

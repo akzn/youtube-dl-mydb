@@ -1,12 +1,13 @@
 from __future__ import unicode_literals
 import mariadb
 import json
-from ytmanager import YtManager
-
+from pathlib import Path
 class DbManager:
     def __init__(self):
         #load config
-        with open('config.json') as file:
+        path = Path(__file__).parent.absolute()
+        configpath = '{}/config.json'.format(path)
+        with open(configpath) as file:
             config = json.load(file)
 
         self.dbcon = mariadb.connect(
@@ -23,7 +24,6 @@ class DbManager:
         mycursor = self.dbcon.cursor()
         query = "INSERT IGNORE INTO video_list set url_id=%(webpage_url_basename)s, title=%(title)s"
 
-        # list = YtManager(self).getUrlBasename()
         list = url_list
 
         for i, item in enumerate(list):
