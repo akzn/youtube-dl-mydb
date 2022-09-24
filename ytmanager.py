@@ -1,9 +1,7 @@
 from __future__ import unicode_literals
 from pickle import FALSE, TRUE
-import mariadb
 import youtube_dl
 import json
-import time
 from pathlib import Path
 from custompp import CustomPP
 class YtManager:
