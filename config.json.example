@@ -4,4 +4,5 @@
     "password":"db_password",
     "database":"db_name"
     "savepath":"path/to/folder/"
+    "playlist-url":"your-playlist-url"
 }
