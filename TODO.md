@@ -1,0 +1,1 @@
+1. error handling if no internet

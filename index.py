@@ -21,8 +21,10 @@ class YtPlaylistMan():
 
     def run(self):
         # get url
-        print('fetching playlist')
+        print('fetching playlist...')
         url_list = YtManager(self).getUrlBasename(self.playlist_url)
+        time.sleep(1)
+        print('Inserting playlist item to database...')
         DbManager().insertListToDB(url_list)
 
 

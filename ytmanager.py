@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from pickle import FALSE, TRUE
-import youtube_dl
+# import youtube_dl
+import yt_dlp as youtube_dl
 import json
 from pathlib import Path
 from custompp import CustomPP
@@ -21,8 +22,12 @@ class YtManager:
     # get url basename from playlist
     # 
     def getUrlBasename(self,playlist_url):
-        ydl = youtube_dl.YoutubeDL({'dump_single_json': 'True',
-                                    'extract_flat' : 'True'})
+        ydl = youtube_dl.YoutubeDL({
+            'dump_single_json': True,
+            'ignoreerrors': True,
+            'extract_flat' : True,
+            'flat-playlist':True
+        })
 
         with ydl:
             result = ydl.extract_info(playlist_url,False)
@@ -60,6 +65,7 @@ class YtManager:
         ydl_opts = {
             'outtmpl': self.savepath+'%(title)s.%(ext)s',
             'format': 'bestaudio/best',
+            'ignoreerrors': True,
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',

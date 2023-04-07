@@ -22,19 +22,21 @@ class DbManager:
     #
     def insertListToDB(self,url_list):
         mycursor = self.dbcon.cursor()
-        query = "INSERT IGNORE INTO video_list set url_id=%(webpage_url_basename)s, title=%(title)s"
+        query = "INSERT IGNORE INTO video_list(url_id,title) values(%(id)s,%(title)s)"
+        # query = "INSERT IGNORE INTO video_list set url_id=%(id)s, title=%(title)s"
 
         list = url_list
 
         for i, item in enumerate(list):
-            urlBasename = list[i]['webpage_url_basename']
-            print(urlBasename)
-
-            val = (list[i])
-            mycursor.execute(query,val)
-            self.dbcon.commit()
-
-            print(mycursor.rowcount, "record inserted.")
+            if list is not None:
+                urlBasename = list[i]['id'] if list is not None else None
+                print(urlBasename)
+                val = (list[i])
+                mycursor.execute(query,val)
+                self.dbcon.commit()
+                print(mycursor.rowcount, "record inserted.")
+            else:
+                print('no data, skipped')
 
     #
     # Get video list from db which hasnt been downloaded yet
