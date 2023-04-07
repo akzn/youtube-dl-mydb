@@ -26,17 +26,21 @@ class DbManager:
         # query = "INSERT IGNORE INTO video_list set url_id=%(id)s, title=%(title)s"
 
         list = url_list
-
+        count = 0
         for i, item in enumerate(list):
             if list is not None:
                 urlBasename = list[i]['id'] if list is not None else None
-                print(urlBasename)
+                print('checking ', urlBasename)
                 val = (list[i])
                 mycursor.execute(query,val)
                 self.dbcon.commit()
-                print(mycursor.rowcount, "record inserted.")
-            else:
-                print('no data, skipped')
+                if mycursor.rowcount > 0:
+                    print(urlBasename,' inserted')
+                    count+=1
+            # else:
+                # print('no data, skipped')
+        
+        print(count, " new record inserted.")
 
     #
     # Get video list from db which hasnt been downloaded yet
